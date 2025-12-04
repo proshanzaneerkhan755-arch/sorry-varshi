@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surprise Message</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: white; /* first 10 sec pure white */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        font-family: 'Arial', sans-serif;
+    }
+
+    #message {
+        font-size: 60px;
+        font-weight: bold;
+        display: none; /* hidden for 10 sec */
+        animation: colorChange 3s infinite alternate, fadeIn 2s ease-in forwards;
+        text-align: center;
+    }
+
+    /* Color-changing animation */
+    @keyframes colorChange {
+        0% { color: #ff0000; }
+        25% { color: #ff8c00; }
+        50% { color: #008cff; }
+        75% { color: #8a2be2; }
+        100% { color: #ff1493; }
+    }
+
+    /* Fade-in animation */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.8); }
+        to { opacity: 1; transform: scale(1); }
+    }
+</style>
+
+</head>
+<body>
+
+<h1 id="message">❤️ చూసింది చాలు కానీ కింద ఉన్న HEART మీద CLICK chey vey</h1>
+
+<script>
+    setTimeout(() => {
+        document.getElementById("message").style.display = "block";
+    }, 10000); // 10 sec delay
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Big Sorry, Varshi! ❤️</title>
+  <style>
+    /* ---- Page layout ---- */
+    :root{
+      --bg-1: #ffe6f0;
+      --bg-2: #fff1e6;
+      --card: rgba(255,255,255,0.9);
+      --accent: #ff6b9a;
+      --muted: #6b6b6b;
+    }
+    *{box-sizing: border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family: 'Poppins', 'Arial', sans-serif;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(255,107,138,0.08), transparent 10%),
+                  radial-gradient(1000px 500px at 90% 90%, rgba(231,76,60,0.04), transparent 10%),
+                  linear-gradient(135deg,var(--bg-1),var(--bg-2));
+      overflow:hidden;
+      color:#222;
+    }
+
+    /* soft vignette */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.03), transparent 35%);
+    }
+
+    .container{
+      width: 960px;
+      max-width: 94%;
+      background: var(--card);
+      border-radius: 18px;
+      padding: 36px;
+      box-shadow: 0 10px 40px rgba(24,24,24,0.12);
+      text-align:center;
+      position:relative;
+      z-index: 5;
+      overflow:hidden;
+    }
+
+    h1{ color:var(--accent); margin:0 0 14px; font-size:2.2rem }
+    p{ color:var(--muted); font-size:1.05rem; line-height:1.5 }
+
+    /* ----- Floating heart graphics ----- */
+    .floating-hearts{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:2;
+      overflow:hidden;
+    }
+
+    .heart{
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:48px;
+      height:48px;
+      transform-origin:center;
+      opacity:0.95;
+      will-change: transform, opacity;
+    }
+
+    /* multiple hearts with different animations */
+    .heart svg{ width:100%; height:100%; display:block }
+
+    /* generic float animation - moves up, fades and sways */
+    @keyframes floatUp {
+      0%{ transform: translateY(0) scale(0.9) rotate(0deg); opacity:1 }
+      25%{ transform: translateY(-40vh) translateX(-6vw) scale(1.05) rotate(-10deg); opacity:0.95 }
+      60%{ transform: translateY(-70vh) translateX(6vw) scale(1.0) rotate(8deg); opacity:0.85 }
+      100%{ transform: translateY(-110vh) translateX(-2vw) scale(0.95) rotate(-6deg); opacity:0 }
+    }
+
+    /* subtle bob for the big heart in the card */
+    .big-heart{ font-size:4rem; display:inline-block; animation:beat 1.2s infinite; }
+    @keyframes beat{
+      0%,100%{ transform: scale(1) }
+      25%{ transform: scale(1.22) }
+      50%{ transform: scale(0.95) }
+      75%{ transform: scale(1.12) }
+    }
+
+    /* different sizes + durations for variety */
+    .h1{ width:36px; height:36px; left:12%; top:80%; animation: floatUp 9s linear infinite; }
+    .h2{ width:58px; height:58px; left:30%; top:90%; animation: floatUp 12s linear infinite; animation-delay: -2s }
+    .h3{ width:44px; height:44px; left:70%; top:85%; animation: floatUp 11s linear infinite; animation-delay:-4s }
+    .h4{ width:72px; height:72px; left:82%; top:92%; animation: floatUp 14s linear infinite; animation-delay:-6s }
+    .h5{ width:26px; height:26px; left:45%; top:100%; animation: floatUp 8s linear infinite; animation-delay:-1s }
+
+    /* tiny twinkling hearts as background bokeh */
+    .bokeh{
+      position:fixed; inset:0; z-index:1; pointer-events:none; opacity:0.35;
+      background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.9) 1px, transparent 2px),
+                        radial-gradient(circle at 70% 60%, rgba(255,255,255,0.8) 1px, transparent 2px),
+                        radial-gradient(circle at 40% 70%, rgba(255,255,255,0.85) 1px, transparent 2px);
+      mix-blend-mode: overlay;
+    }
+
+    /* button styles */
+    .refresh-button{
+      background: linear-gradient(180deg,#ff9bb0,#ff6b9a);
+      color:white; border:0; padding:10px 18px; border-radius:999px; font-weight:700; cursor:pointer;
+      box-shadow: 0 8px 18px rgba(255,107,138,0.18);
+    }
+    .refresh-button:active{ transform: translateY(1px) }
+
+    .love-link{ text-decoration:none; display:inline-block; margin-top:20px }
+    .love-message-text{ margin-top:8px; font-weight:700; color:#444 }
+
+    /* small responsive tweaks */
+    @media (max-width:520px){
+      h1{ font-size:1.5rem }
+      .container{ padding:22px }
+      .big-heart{ font-size:3rem }
+    }
+
+    /* small sparkle animation for sentences */
+    .sparkle{ position:relative }
+    .sparkle::after{
+      content:""; position:absolute; right:-6px; top:-6px; width:10px; height:10px; border-radius:50%;
+      background:linear-gradient(45deg,#fff8e8,#ffd6ea); box-shadow:0 6px 18px rgba(255,107,138,0.18);
+      opacity:0; transform:scale(0.6); animation: popSpark 2.6s infinite;
+    }
+    @keyframes popSpark{ 0%,20%{opacity:0; transform:scale(0.6)} 30%{opacity:1; transform:scale(1.15)} 60%{opacity:0} 100%{opacity:0} }
+
+    /* little confetti hearts at bottom */
+    .confetti-plate{ position:absolute; left:0; right:0; bottom:-20px; height:80px; pointer-events:none }
+    .confetti-plate .dot{ position:absolute; bottom:0; width:10px; height:10px; transform-origin:center; }
+  </style>
+</head>
+<body>
+  <!-- decorative floating hearts (SVG inline for crispness) -->
+  <div class="floating-hearts" aria-hidden="true">
+    <div class="heart h1">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#ff6b9a" d="M12 21s-7.5-4.7-9.6-7.4C-0.5 9.9 4 4 8.7 6.3 10.7 7.5 12 9 12 9s1.3-1.5 3.3-2.7C20 4 24.5 9.9 21.6 13.6 19.5 16.3 12 21 12 21z"/></svg>
+    </div>
+    <div class="heart h2">
+      <svg viewBox="0 0 24 24"><path fill="#ff8fb3" d="M12 21s-7.5-4.7-9.6-7.4C-0.5 9.9 4 4 8.7 6.3 10.7 7.5 12 9 12 9s1.3-1.5 3.3-2.7C20 4 24.5 9.9 21.6 13.6 19.5 16.3 12 21 12 21z"/></svg>
+    </div>
+    <div class="heart h3">
+      <svg viewBox="0 0 24 24"><path fill="#f85b8b" d="M12 21s-7.5-4.7-9.6-7.4C-0.5 9.9 4 4 8.7 6.3 10.7 7.5 12 9 12 9s1.3-1.5 3.3-2.7C20 4 24.5 9.9 21.6 13.6 19.5 16.3 12 21 12 21z"/></svg>
+    </div>
+    <div class="heart h4">
+      <svg viewBox="0 0 24 24"><path fill="#ff416c" d="M12 21s-7.5-4.7-9.6-7.4C-0.5 9.9 4 4 8.7 6.3 10.7 7.5 12 9 12 9s1.3-1.5 3.3-2.7C20 4 24.5 9.9 21.6 13.6 19.5 16.3 12 21 12 21z"/></svg>
+    </div>
+    <div class="heart h5">
+      <svg viewBox="0 0 24 24"><path fill="#ff9bb0" d="M12 21s-7.5-4.7-9.6-7.4C-0.5 9.9 4 4 8.7 6.3 10.7 7.5 12 9 12 9s1.3-1.5 3.3-2.7C20 4 24.5 9.9 21.6 13.6 19.5 16.3 12 21 12 21z"/></svg>
+    </div>
+  </div>
+
+  <!-- subtle bokeh overlay -->
+  <div class="bokeh" aria-hidden="true"></div>
+
+  <div class="container" role="main">
+    <h1>🤌 I'M SO SORRY, VARSHI! 😘</h1>
+
+    <p>
+      <span class="sparkle">Sorry maa… na meda unna kopam ni </span>
+      <span style="font-weight:800; color:#1abc9c"> 🤬</span>
+      <span class="loading dots"><span>.</span><span>.</span><span>.</span></span>
+      Remove chey ma … please press
+      <button class="refresh-button" onclick="doRefresh(event)">
+        <span style="font-size:1.1rem">👍</span> Remove
+      </button>
+    </p>
+
+    <p style="margin-top:10px">
+      <strong>Sorry bangaram…</strong> naa heart lo
+      <em> ‘nitho matladaka pothey ’</em>
+      ado teliyani pain ra . <span style="font-size:1.6rem">😔</span>
+    </p>
+
+    <p style="margin-top:6px; color:#3b3b3b; font-weight:600">
+      sorry na bujji varshi — nuvvu matladaka pothey nenu tesukolenu maa…
+      <span style="font-style:italic">enti ra bangaram.. ni mogudu meda kuda aluguthava...</span>
+      <span class="big-heart">💖</span>
+    </p>
+
+    <a class="love-link" href="whatsapp://send?phone=7569336743&text=I%20love%20u.%20toooo%20kanna%F0%9F%98%98" target="_blank" rel="noopener">
+      <div class="whatsapp-heart" aria-hidden="true" style="font-size:56px; color:#e74c3c; animation:beat 1.4s infinite">❤️</div>
+      <div class="love-message-text">Tap the heart to send a message back!</div>
+    </a>
+
+    <p style="margin-top:18px; font-size:1.25rem; color:#e74c3c; font-weight:700">I love u Varshi Bangaram 😘🫂</p>
+
+    <!-- confetti hearts plate (decorative) -->
+    <div class="confetti-plate" aria-hidden="true">
+      <!-- some decorative dots generated by JS for variety -->
+    </div>
+  </div>
+
+  <script>
+    // Refresh button playful action
+    function doRefresh(e){
+      const btn = e.currentTarget;
+      btn.disabled = true;
+      btn.textContent = 'Fixing...';
+      // playful little animation
+      setTimeout(()=>{
+        alert('Yay! 🥰Thank you bangaram! 😊');
+        btn.disabled = false;
+        btn.innerHTML = '<span style="font-size:1.1rem">🔄</span> Refresh';
+      }, 900);
+    }
+
+    // Create small confetti hearts at bottom for extra love
+    (function makeConfetti(){
+      const plate = document.querySelector('.confetti-plate');
+      if(!plate) return;
+      const colors = ['#ff6b9a','#ff8fb3','#ff416c','#ffd1e0','#ff9bb0'];
+      for(let i=0;i<14;i++){
+        const d = document.createElement('div');
+        d.className = 'dot';
+        const size = 8 + Math.random()*12;
+        d.style.width = d.style.height = size+'px';
+        d.style.left = (10 + Math.random()*80)+'%';
+        d.style.background = colors[Math.floor(Math.random()*colors.length)];
+        d.style.borderRadius = '50%';
+        d.style.opacity = 0.95;
+        d.style.transform = 'translateY(0) rotate('+ (Math.random()*360)+'deg)';
+        d.style.transition = 'transform 3s cubic-bezier(.2,.8,.2,1), opacity 3s';
+        plate.appendChild(d);
+        // animate upwards and vanish
+        (function(el,delay){
+          setTimeout(()=>{
+            el.style.transform = 'translateY(-60vh) rotate('+(Math.random()*720-360)+'deg)';
+            el.style.opacity = 0;
+          }, delay);
+        })(d, i * 160);
+      }
+    })();
+
+    // make hearts drift slowly by randomly adjusting animation durations slightly
+    document.querySelectorAll('.floating-hearts .heart').forEach((h, idx)=>{
+      const extra = Math.random()*6 - 3; // -3 to +3 secs
+      const prev = h.style.animationDuration || window.getComputedStyle(h).animationDuration || '10s';
+      // compute base seconds
+      const s = parseFloat(prev) + extra;
+      h.style.animationDuration = Math.max(6, s) + 's';
+      h.style.left = (5 + Math.random()*90) + '%';
+      h.style.top = (80 + Math.random()*30) + '%';
+    });
+  </script>
+</body>
+</html>
